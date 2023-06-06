@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# Steps to run the codebase 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+$ npm install
+$ npm start
+
+navigate browser to localhost:3000
+
+-----------------------------
+## Tech Stack
+
+React Js
+Solidity
 
 ## Available Scripts
 
@@ -9,62 +18,48 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Structure of files in the codebase
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+src Folder -
+    Contracts - 
+        Module2_submission.sol - You can view the smartcontract used in this code 
+        Module2_submission_abi.json - The abi file of the smartcontract.
 
-### `npm run eject`
+The smart contract is deployed on Avalanche Fuji Testnet.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Contract Address - 0xd24B6FF0e686Ba76041f0350eDe20b716e1c4442
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Flow of smart contract
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1.Firstly connect your wallet by clicking on connectwallet button(Make sure you have test BNB in your wallet).
+2. You can check the stored value in the counter contract using check
+3. You can increment or decrement the stored value in the contract using increment and decrement respectively
+4. You can reset the value in the contract to the original value during deployment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## In App.js you can find all these functions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+connectWalletHandler - For connecting the metamask wallet
+AccoutChangedHandler - Chainging account from metamask can cause this function to work
+chainChangedHandler - Chainging the chain network in the metamask can cause this function to work
+updateEthers - This function helps in communicating with the abi,deployed smart contract and the provider network of the metamask
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `let tempProvider = new ethers.providers.Web3Provider(window.ethereum);`
+###	`let tempSigner = tempProvider.getSigner();`
+### `let tempContract = new ethers.Contract(contractAddress, simple_token_abi, tempSigner)` - These are the steps for integrating Smartcontract with the Frontend.
 
-### Code Splitting
+increment - increases the stored value by one
+decrement - reduces the stored value by one
+reset - resets the stored value to original value during contract deployment (zero for this contract instance)
+check - displays the stored value
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
